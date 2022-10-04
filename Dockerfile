@@ -10,7 +10,7 @@ ENV NAME=Godi
 RUN apt install -y python3 && apt install -y pip
 RUN apt-get install libmysqlclient-dev -y && apt-get install python3-dev -y
 # Install Flask Package for the execution of Flask Application.
-RUN pip install Flask && pip install flask-mysqldb && pip install yaml
+RUN pip install Flask && pip install flask-mysqldb
 # Install Git, as we will use it for cloning the source code.
 RUN apt install -y git
 # Clone the Git repository for the source code.
