@@ -1,10 +1,12 @@
 from flask import Flask,render_template,request
 from flask_mysqldb import MySQL
+import os
 
 app = Flask(__name__)
 
+host = os.getenv("HOST")
 # Configure db
-app.config['MYSQL_HOST']="0.0.0.0"
+app.config['MYSQL_HOST']="host"
 app.config["MYSQL_USER"] = "godi"
 app.config["MYSQL_PASSWORD"] = "godi"
 app.config["MYSQL_DB"] = "flaskapp"
