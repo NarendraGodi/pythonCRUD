@@ -1,12 +1,15 @@
 from flask import Flask,render_template,request
 from flask_mysqldb import MySQL
+import os
 
 app = Flask(__name__)
 
+# get Mysql Password.
+mysql_password = os.getenv("MYSQL_ROOT_PASSWORD")
 # Configure db
 app.config['MYSQL_HOST']="mysql-crud"
-app.config["MYSQL_USER"] = "godi"
-app.config["MYSQL_PASSWORD"] = "godi"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = mysql_password
 app.config["MYSQL_DB"] = "flaskapp"
 
 mysql = MySQL(app)

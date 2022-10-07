@@ -2,6 +2,8 @@
 FROM ubuntu
 # update the repositories.
 RUN apt-get update && apt-get -y upgrade
+
+ENV MYSQL_ROOT_PASSWORD = ""
 # Install apt utilities.
 RUN apt install apt-utils
 # Install Python and PIP.
