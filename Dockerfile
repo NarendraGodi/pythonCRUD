@@ -4,8 +4,6 @@ FROM ubuntu
 RUN apt-get update && apt-get -y upgrade
 # Install apt utilities.
 RUN apt install apt-utils
-# Add the environment variable.
-ENV HOST=192.168.0.105
 # Install Python and PIP.
 RUN apt install -y python3 && apt install -y pip
 RUN apt-get install libmysqlclient-dev -y && apt-get install python3-dev -y
