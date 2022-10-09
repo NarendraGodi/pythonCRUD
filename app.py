@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request
-from flask_mysqldb import MySQL
+import mysql.connector
 import os
 
 app = Flask(__name__)
@@ -7,12 +7,8 @@ app = Flask(__name__)
 # get Mysql Password.
 mysql_password = os.getenv("MYSQL_ROOT_PASSWORD")
 # Configure db
-app.config['MYSQL_HOST']="mysql-crud"
-app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = mysql_password
-app.config["MYSQL_DB"] = "flaskapp"
 
-mysql = MySQL(app)
+connection = mysql.connector.connect(user="root",password=mysql_password,host="mysql",database="flaskapp")
 
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -21,9 +17,8 @@ def index():
         name = request.form.get("name")
         email = request.form.get("email")
 
-        cur = mysql.connection.cursor()
+        cur = connection.cursor()
         cur.execute("INSERT INTO users(name, email) VALUES(%s, %s)",(name,email))
-        mysql.connection.commit()
         cur.close()
         return 'Success'
     return render_template('index.html')
